@@ -13,5 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Login to Docker Hub
+        run: echo "${{ Phawatcharakorn }}" | docker login -u "${{ Phawatcharakorn }}" --password-stdin
+
       - name: Build Docker Image
-        run: docker build -t react-ci-cd-demo .
+        run: docker build -t ${{ Phawatcharakorn }}/react-ci-cd-demo .
+
+      - name: Push Docker Image
+        run: docker push ${{ secrets.Phawatcharakorn }}/react-ci-cd-demo
