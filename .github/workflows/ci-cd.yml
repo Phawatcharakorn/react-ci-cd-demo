@@ -28,11 +28,3 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/react-app:latest
-
-      # [คะแนนพิเศษ 2] แจ้งเตือนเข้า Discord เมื่อสำเร็จ
-      - name: Discord Notification
-        if: success()
-        run: |
-          curl -H "Content-Type: application/json" \
-          -d '{"content": "🚀 **Deploy Success!**\nRepo: ${{ github.repository }}\nCommit: ${{ github.event.head_commit.message }}"}' \
-          ${{ secrets.DISCORD_WEBHOOK }}
